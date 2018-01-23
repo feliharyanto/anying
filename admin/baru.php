@@ -1,4 +1,3 @@
- <script window.print()></script>
 <?php 
 $c1 = $_POST['cluster1'];
 $c2 = $_POST['cluster2'];
@@ -173,7 +172,9 @@ $c3 = $c3result;
 
 if($helperWhile==1){
 	$dataTableNama='';
-	$tableKampret ='<table width="100%"  border="1" cellspacing="0" cellpadding="0" style="margin-top: 10px; text-align:center;" class="tabel_reg">
+	$inputData = '<form action="admin/save.php" method="POST">';
+	$tableKampret ='
+		<table width="100%"  border="1" cellspacing="0" cellpadding="0" style="margin-top: 10px; text-align:center;" class="tabel_reg">
 		<thead><tr>
 		<td>No</td>
 		<td>No KK</td>
@@ -188,12 +189,20 @@ if($helperWhile==1){
 		<td>'.$explodeKK[$i-1].'</td>
 		<td>'.$explodeNama[$i-1].'</td>
 		<td>'.$ArrayAll[$i-1].'</td>
-		</tr>';
+		</tr>
+		</tbody>';
+		$inputData = $inputData.'<input type="hidden" value="'.$explodeKK[$i-1].'" name="valKK[]">
+		<input type="hidden" value="'.$explodeNama[$i-1].'" name="valNama[]">
+		<input type="hidden" value="'.$ArrayAll[$i-1].'" name="valCluster[]"><br>';
 	}
+
+	$btnSaveData = '<input style="margin-top: -200px;" type="submit" class="btn btn-primay" value="Simpan"/>
+	</form>
+	';
 
  	?> <br><br> <?php echo "HASIL AKHIR : ";
 
-	echo $tableKampret.$dataTableNama.$tableKampre2;
+	echo $tableKampret.$dataTableNama.$tableKampre2.$inputData.$btnSaveData;
 
 }
 

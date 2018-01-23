@@ -3,9 +3,7 @@
 $db->host='localhost';
 $db->user='root';
 $db->password='';
-$db->name='raskincoeg';
-
-$wwwroot='./';
+$db->name='raskin';
 
 $link=mysql_connect($db->host,$db->user,$db->password);
 mysql_select_db($db->name);

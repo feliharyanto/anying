@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 22 Jan 2018 pada 15.18
--- Versi Server: 5.6.21
--- PHP Version: 5.6.3
+-- Host: localhost
+-- Generation Time: Jan 23, 2018 at 05:33 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `raskin`
@@ -23,16 +25,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`username`, `password`) VALUES
@@ -41,19 +43,19 @@ INSERT INTO `admin` (`username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `alternatif`
+-- Table structure for table `alternatif`
 --
 
-CREATE TABLE IF NOT EXISTS `alternatif` (
-`id_alternatif` int(11) NOT NULL,
+CREATE TABLE `alternatif` (
+  `id_alternatif` int(11) NOT NULL,
   `no_kk` varchar(15) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `rt` varchar(10) NOT NULL,
   `rw` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `alternatif`
+-- Dumping data for table `alternatif`
 --
 
 INSERT INTO `alternatif` (`id_alternatif`, `no_kk`, `nama`, `rt`, `rw`) VALUES
@@ -71,11 +73,11 @@ INSERT INTO `alternatif` (`id_alternatif`, `no_kk`, `nama`, `rt`, `rw`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hasil`
+-- Table structure for table `hasil`
 --
 
-CREATE TABLE IF NOT EXISTS `hasil` (
-`id_hasil` int(11) NOT NULL,
+CREATE TABLE `hasil` (
+  `id_hasil` int(11) NOT NULL,
   `no_kk` int(11) NOT NULL,
   `nama` int(11) NOT NULL,
   `nilai` int(11) NOT NULL,
@@ -85,18 +87,18 @@ CREATE TABLE IF NOT EXISTS `hasil` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `himpunan`
+-- Table structure for table `himpunan`
 --
 
-CREATE TABLE IF NOT EXISTS `himpunan` (
-`id_himpunan` int(11) NOT NULL,
+CREATE TABLE `himpunan` (
+  `id_himpunan` int(11) NOT NULL,
   `id_kriteria` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `nilai` float NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `himpunan`
+-- Dumping data for table `himpunan`
 --
 
 INSERT INTO `himpunan` (`id_himpunan`, `id_kriteria`, `nama`, `nilai`) VALUES
@@ -109,8 +111,8 @@ INSERT INTO `himpunan` (`id_himpunan`, `id_kriteria`, `nama`, `nilai`) VALUES
 (22, 3, ' Tidak memiliki Aset > Rp.1.800.000', 1),
 (25, 4, 'Tagihan listrik < Rp.50.000 per bulan', 0.5),
 (26, 4, 'Tagihan listrik > Rp.50.000 per bulam', 1),
-(29, 5, 'luas rata" > 5m persegi ', 0.5),
-(30, 5, 'luas rata" < 5m persegi ', 1),
+(29, 5, 'luas rata\" > 5m persegi ', 0.5),
+(30, 5, 'luas rata\" < 5m persegi ', 1),
 (33, 6, 'jenis dinding berkualitas baik (tembok)', 0.5),
 (34, 6, 'jenis dinding berkualitas rendah (bambu/kayu)', 1),
 (38, 7, 'keluarga mampu makan 3kali sehari', 0.5),
@@ -137,17 +139,17 @@ INSERT INTO `himpunan` (`id_himpunan`, `id_kriteria`, `nama`, `nilai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `klasifikasi`
+-- Table structure for table `klasifikasi`
 --
 
-CREATE TABLE IF NOT EXISTS `klasifikasi` (
-`id_klasifikasi` int(11) NOT NULL,
+CREATE TABLE `klasifikasi` (
+  `id_klasifikasi` int(11) NOT NULL,
   `id_alternatif` int(11) NOT NULL,
   `id_himpunan` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=737 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `klasifikasi`
+-- Dumping data for table `klasifikasi`
 --
 
 INSERT INTO `klasifikasi` (`id_klasifikasi`, `id_alternatif`, `id_himpunan`) VALUES
@@ -315,25 +317,25 @@ INSERT INTO `klasifikasi` (`id_klasifikasi`, `id_alternatif`, `id_himpunan`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kriteria`
+-- Table structure for table `kriteria`
 --
 
-CREATE TABLE IF NOT EXISTS `kriteria` (
-`id_kriteria` int(11) NOT NULL,
+CREATE TABLE `kriteria` (
+  `id_kriteria` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `atribut` enum('benefit','cost') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kriteria`
+-- Dumping data for table `kriteria`
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `nama`, `atribut`) VALUES
-(1, 'Pendapatan rata" keluarga', 'cost'),
+(1, 'Pendapatan rata\" keluarga', 'cost'),
 (2, 'kepemilikan rumah', 'benefit'),
 (3, 'jumlah aset selain tanah', 'cost'),
 (4, 'tagihan listrk', 'cost'),
-(5, 'luas tempat tinggal rata" anggota keluarga', 'benefit'),
+(5, 'luas tempat tinggal rata\" anggota keluarga', 'benefit'),
 (6, 'jenis dinding bidang terluas tempat tinggal', 'benefit'),
 (7, 'kemampuan makan per hari', 'benefit'),
 (9, 'jenis lauk', 'benefit'),
@@ -349,13 +351,12 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama`, `atribut`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `simpan`
+-- Table structure for table `simpan`
 --
 
-CREATE TABLE IF NOT EXISTS `simpan` (
-`id_hasil` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `nilai` int(11) NOT NULL,
+CREATE TABLE `simpan` (
+  `id_hasil` int(11) NOT NULL,
+  `no_kk` varchar(100) NOT NULL,
   `kluster` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -367,43 +368,47 @@ CREATE TABLE IF NOT EXISTS `simpan` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
- ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `alternatif`
 --
 ALTER TABLE `alternatif`
- ADD PRIMARY KEY (`id_alternatif`);
+  ADD PRIMARY KEY (`id_alternatif`);
 
 --
 -- Indexes for table `hasil`
 --
 ALTER TABLE `hasil`
- ADD PRIMARY KEY (`id_hasil`);
+  ADD PRIMARY KEY (`id_hasil`);
 
 --
 -- Indexes for table `himpunan`
 --
 ALTER TABLE `himpunan`
- ADD PRIMARY KEY (`id_himpunan`), ADD KEY `id_kriteria` (`id_kriteria`), ADD KEY `id_kriteria_2` (`id_kriteria`);
+  ADD PRIMARY KEY (`id_himpunan`),
+  ADD KEY `id_kriteria` (`id_kriteria`),
+  ADD KEY `id_kriteria_2` (`id_kriteria`);
 
 --
 -- Indexes for table `klasifikasi`
 --
 ALTER TABLE `klasifikasi`
- ADD PRIMARY KEY (`id_klasifikasi`), ADD KEY `id_alternatif` (`id_alternatif`,`id_himpunan`), ADD KEY `id_himpunan` (`id_himpunan`);
+  ADD PRIMARY KEY (`id_klasifikasi`),
+  ADD KEY `id_alternatif` (`id_alternatif`,`id_himpunan`),
+  ADD KEY `id_himpunan` (`id_himpunan`);
 
 --
 -- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
- ADD PRIMARY KEY (`id_kriteria`);
+  ADD PRIMARY KEY (`id_kriteria`);
 
 --
 -- Indexes for table `simpan`
 --
 ALTER TABLE `simpan`
- ADD PRIMARY KEY (`id_hasil`);
+  ADD PRIMARY KEY (`id_hasil`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -413,48 +418,55 @@ ALTER TABLE `simpan`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `hasil`
 --
 ALTER TABLE `hasil`
-MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `himpunan`
 --
 ALTER TABLE `himpunan`
-MODIFY `id_himpunan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=66;
+  MODIFY `id_himpunan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+
 --
 -- AUTO_INCREMENT for table `klasifikasi`
 --
 ALTER TABLE `klasifikasi`
-MODIFY `id_klasifikasi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=737;
+  MODIFY `id_klasifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=737;
+
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT for table `simpan`
 --
 ALTER TABLE `simpan`
-MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `himpunan`
+-- Constraints for table `himpunan`
 --
 ALTER TABLE `himpunan`
-ADD CONSTRAINT `himpunan_ibfk_1` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id_kriteria`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `himpunan_ibfk_1` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id_kriteria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `klasifikasi`
+-- Constraints for table `klasifikasi`
 --
 ALTER TABLE `klasifikasi`
-ADD CONSTRAINT `klasifikasi_ibfk_1` FOREIGN KEY (`id_alternatif`) REFERENCES `alternatif` (`id_alternatif`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `klasifikasi_ibfk_2` FOREIGN KEY (`id_himpunan`) REFERENCES `himpunan` (`id_himpunan`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `klasifikasi_ibfk_1` FOREIGN KEY (`id_alternatif`) REFERENCES `alternatif` (`id_alternatif`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `klasifikasi_ibfk_2` FOREIGN KEY (`id_himpunan`) REFERENCES `himpunan` (`id_himpunan`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
